@@ -124,7 +124,7 @@ ssvs_continuous <- function(data, y, x, inprob, runs, burn, a1, b1, prec.beta, p
 
   # LET'S ROLL:
   for (i in 1:runs) {
-    taue <- stats::rgamma(1, n / 2 + a1, sum((y - int - x %*% beta)^2) / 2 + b1)
+    taue <- stats::rgamma(1, n / 2 + a1, sum((y - int - x %*% beta)^2,na.rm=TRUE) / 2 + b1)
     int <- stats::rnorm(1, mean(y - x %*% beta), 1 / sqrt(n * taue))
 
     # update alpha
